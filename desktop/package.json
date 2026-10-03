@@ -1,0 +1,62 @@
+{
+  "name": "texture-supply",
+  "productName": "Texture Supply by piraru",
+  "version": "2.6.0",
+  "description": "Texture Supply by piraru*: halftones, riso, xerox, serigrafia e texturas de impressão para fotos.",
+  "author": "Francisco Silva",
+  "main": "main.js",
+  "scripts": {
+    "build:html": "node build-html.js",
+    "start": "npm run build:html && electron .",
+    "dist": "npm run build:html && electron-builder --win nsis --publish never",
+    "dist:portable": "npm run build:html && electron-builder --win portable --publish never"
+  },
+  "build": {
+    "appId": "br.piraru.texturesupply",
+    "productName": "Texture Supply by piraru",
+    "files": [
+      "main.js",
+      "preload.js",
+      "app/**/*"
+    ],
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "win": {
+      "icon": "build/icon.png",
+      "target": [
+        "nsis"
+      ],
+      "executableName": "Texture Supply"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": "always",
+      "createStartMenuShortcut": true,
+      "shortcutName": "Texture Supply by piraru",
+      "installerLanguages": [
+        "pt_BR"
+      ],
+      "language": "1046",
+      "artifactName": "Texture-Supply-by-piraru-Instalador-${version}.${ext}",
+      "uninstallDisplayName": "Texture Supply by piraru*"
+    },
+    "portable": {
+      "artifactName": "Texture-Supply-by-piraru-Portatil-${version}.${ext}"
+    },
+    "compression": "maximum"
+  },
+  "devDependencies": {
+    "@fontsource/anton": "^5.3.0",
+    "@fontsource/ibm-plex-mono": "^5.3.0",
+    "@fontsource/ibm-plex-sans": "^5.3.0",
+    "@fontsource/sora": "^5.3.0",
+    "@fontsource/vt323": "^5.3.0",
+    "electron": "^44.5.1",
+    "electron-builder": "^26.15.3",
+    "jszip": "^3.10.2"
+  }
+}
